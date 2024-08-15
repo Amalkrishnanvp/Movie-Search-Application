@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Noto serif";
+}
+.search-btn:hover {
+  background-color: rgb(214, 214, 214);
+}
