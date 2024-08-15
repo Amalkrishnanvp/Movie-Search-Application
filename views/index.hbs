@@ -1,12 +1,12 @@
 <div class="holder flex justify-center pt-5 pb-6">
-  <div class="project sm:w-8/12 md:w-7/12 lg:w-6/12">
+  <div class="project px-6 lg:w-7/12">
     <h1
       class="text-white font-semibold text-4xl md:text-5xl mb-14 text-center"
     >Movie Search App</h1>
     <div class="text-center mb-8">
       <input
         type="text"
-        class="h-9 outline-none px-2 py-1 rounded-md text-sm border border-white bg-transparent text-white cinema-holder w-10/12"
+        class="h-9 outline-none px-2 py-1 rounded-lg text-sm border border-white bg-transparent text-white cinema-holder w-10/12"
       />
       <button
         class="px-2.5 h-9 rounded-lg ml-2 bg-yellow-400 hover:bg-yellow-300 search-btn"
@@ -15,45 +15,47 @@
       </button>
     </div>
     <div
-      class="text-white details-shower bg-gray-900 rounded-md px-5 py-4 flex flex-col gap-3"
+      class="text-white details-shower bg-gray-900 rounded-md px-6 pb-5 pt-7 lg:pt-5 flex flex-col gap-3"
     >
-      <div class="row-1 flex">
-        <div class="w-48">
-          <img src="" class="object-cover w-full h-auto movie-img" />
+      <div class="row-1 flex flex-col items-center sm:flex-row gap-5">
+        <div class="w-48 mb-4">
+          <img
+            src="{{movie.Poster}}"
+            class="object-cover w-full h-auto movie-img rounded-md"
+          />
         </div>
         <div
-          class="movie-info flex-1 flex flex-col items-center justify-center gap-5"
+          class="movie-info flex-1 flex flex-col items-center justify-center gap-6"
         >
-          <h3 class="font-bold text-xl movie-name">black swan</h3>
+          <h3 class="font-bold text-xl movie-name">{{movie.Title}}</h3>
           <div class="flex items-center gap-2">
             <div class="w-4">
               <img src="/images/star.png" class="object-cover w-full h-auto" />
             </div>
-            <p class="movie-imdb-rating mt-0.5">8</p>
+            <p class="movie-imdb-rating mt-0.5">{{movie.imdbRating}}</p>
           </div>
           <div class="flex gap-4">
-            <p class="text-sm movie-year">2010</p>
-            <p class="text-sm movie-duration">108 min</p>
+            <p class="text-sm movie-year">{{movie.Year}}</p>
+            <p class="text-sm movie-duration">{{movie.Runtime}}</p>
           </div>
           <div class="flex gap-5">
             <p
               class="text-sm border border-white p-1 rounded-sm movie-genre"
-            >Drama</p>
+            >{{movie.Genre}}</p>
           </div>
         </div>
       </div>
       <div class="row-2 flex flex-col gap-1">
         <h3>Plot : </h3>
-        <p class="text-sm movie-plot">Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Nostrum, repellendus!</p>
+        <p class="text-sm movie-plot">{{movie.Plot}}</p>
       </div>
-      <div class="row-3 flex items-center gap-1">
+      <div class="row-3 flex flex-col gap-1">
         <h3>Cast : </h3>
-        <p class="text-sm movie-cast">Lorem ipsum dolor sit amet.</p>
+        <p class="text-sm movie-cast">{{movie.Actors}}</p>
       </div>
       <div class="row-4 flex items-center gap-1">
         <h3>Director : </h3>
-        <p class="text-sm movie-director"></p>
+        <p class="text-sm movie-director">{{movie.Director}}</p>
       </div>
     </div>
   </div>
