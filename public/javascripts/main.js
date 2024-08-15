@@ -1,6 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchBtn = document.querySelector(".search-btn");
   const cinemaHolder = document.querySelector(".cinema-holder");
+  const movieImg = document.querySelector(".movie-img");
+  const movieName = document.querySelector(".movie-name");
+  const movieImdbRating = document.querySelector(".movie-imdb-rating");
+  const movieYear = document.querySelector(".movie-year");
+  const movieDuration = document.querySelector(".movie-duration");
+  const movieGenre = document.querySelector(".movie-genre");
+  const moviePlot = document.querySelector(".movie-plot");
+  const movieCast = document.querySelector(".movie-cast");
+  const movieDirector = document.querySelector(".movie-director");
 
   async function searchMovie(movieName) {
     try {
@@ -23,7 +32,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showMovieDetails(data) {
-    console.log(data.movieDetails);
+    const movieDetails = data.movieDetails;
+    console.log(movieDetails);
+    movieImg.src = movieDetails.Poster;
+    movieName.innerText = movieDetails.Title;
+    movieImdbRating.innerText = movieDetails.imdbRating;
+    movieYear.innerText = movieDetails.Year;
+    movieDuration.innerText = movieDetails.Runtime;
+    movieGenre.innerText = movieDetails.Genre;
+    moviePlot.innerText = movieDetails.Plot;
+    movieCast.innerText = movieDetails.Actors;
+    movieDirector.innerText = movieDetails.Director;
   }
 
   searchBtn.addEventListener("click", () => {
