@@ -558,6 +558,10 @@ video {
   margin-bottom: 3.5rem;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .mb-8 {
   margin-bottom: 2rem;
 }
@@ -570,16 +574,12 @@ video {
   margin-top: 0.125rem;
 }
 
-.mb-5 {
-  margin-bottom: 1.25rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
 .flex {
   display: flex;
+}
+
+.h-12 {
+  height: 3rem;
 }
 
 .h-9 {
@@ -588,6 +588,14 @@ video {
 
 .h-auto {
   height: auto;
+}
+
+.h-11 {
+  height: 2.75rem;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .w-10\/12 {
@@ -658,20 +666,8 @@ video {
   border-radius: 0.125rem;
 }
 
-.rounded-3xl {
-  border-radius: 1.5rem;
-}
-
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
 .border {
   border-width: 1px;
-}
-
-.border-2 {
-  border-width: 2px;
 }
 
 .border-white {
@@ -717,9 +713,9 @@ video {
   padding-right: 0.625rem;
 }
 
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .py-1 {
@@ -727,9 +723,9 @@ video {
   padding-bottom: 0.25rem;
 }
 
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .px-4 {
@@ -737,9 +733,8 @@ video {
   padding-right: 1rem;
 }
 
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+.pb-5 {
+  padding-bottom: 1.25rem;
 }
 
 .pb-6 {
@@ -748,14 +743,6 @@ video {
 
 .pt-5 {
   padding-top: 1.25rem;
-}
-
-.pb-5 {
-  padding-bottom: 1.25rem;
-}
-
-.pb-4 {
-  padding-bottom: 1rem;
 }
 
 .pt-7 {
@@ -794,11 +781,6 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -814,20 +796,12 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:w-8\/12 {
-    width: 66.666667%;
-  }
-
   .sm\:flex-row {
     flex-direction: row;
   }
 }
 
 @media (min-width: 768px) {
-  .md\:w-7\/12 {
-    width: 58.333333%;
-  }
-
   .md\:text-5xl {
     font-size: 3rem;
     line-height: 1;
@@ -835,16 +809,8 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:w-6\/12 {
-    width: 50%;
-  }
-
   .lg\:w-7\/12 {
     width: 58.333333%;
-  }
-
-  .lg\:pt-7 {
-    padding-top: 1.75rem;
   }
 
   .lg\:pt-5 {

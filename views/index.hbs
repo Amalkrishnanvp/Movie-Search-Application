@@ -3,14 +3,14 @@
     <h1
       class="text-white font-semibold text-4xl md:text-5xl mb-14 text-center"
     >Movie Search App</h1>
-    <div class="text-center mb-8">
+    <div class="text-center mb-8 h-11">
       <input
         type="text"
-        class="h-9 outline-none px-2 py-1 rounded-md text-sm border border-white cinema-holder w-10/12 bg-transparent text-white"
-        placeholder="Type Movie Name"
+        class="h-full outline-none px-2 py-1 rounded-md text-sm border border-white cinema-holder w-10/12 bg-transparent text-white"
+        placeholder="Type a Movie name"
       />
       <button
-        class="px-2.5 h-9 rounded-lg ml-2 bg-yellow-400 hover:bg-yellow-300 search-btn"
+        class="px-4 h-full rounded-lg ml-2 bg-yellow-400 hover:bg-yellow-300 search-btn"
       >
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
@@ -54,9 +54,23 @@
         <h3>Cast : </h3>
         <p class="text-sm movie-cast">{{movie.Actors}}</p>
       </div>
-      <div class="row-4 flex items-center gap-1">
+      <div class="row-5 flex flex-col gap-1">
+        <h3>Writer : </h3>
+        <p class="text-sm movie-writer">{{movie.Writer}}</p>
+      </div>
+      <div class="row-6 flex items-center gap-1">
         <h3>Director : </h3>
         <p class="text-sm movie-director">{{movie.Director}}</p>
+      </div>
+      <div class="row-7 flex items-center gap-1">
+        <h3>Release Date : </h3>
+        <p class="text-sm movie-release">{{movie.Released}}</p>
+      </div>
+      <div class="row-8 flex items-center gap-1">
+        <h3>Box office : </h3>
+        <p class="text-sm movie-box-office">
+          {{movie.BoxOffice}}
+        </p>
       </div>
     </div>
   </div>

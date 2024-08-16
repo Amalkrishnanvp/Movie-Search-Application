@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const moviePlot = document.querySelector(".movie-plot");
   const movieCast = document.querySelector(".movie-cast");
   const movieDirector = document.querySelector(".movie-director");
+  const movieWriter = document.querySelector(".movie-writer");
+  const movieRelease = document.querySelector(".movie-release");
+  const movieBoxOffice = document.querySelector(".movie-box-office");
 
   async function searchMovie(movieName) {
     try {
@@ -43,6 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
     moviePlot.innerText = movieDetails.Plot;
     movieCast.innerText = movieDetails.Actors;
     movieDirector.innerText = movieDetails.Director;
+    movieWriter.innerText = movieDetails.Writer;
+    movieRelease.innerText = movieDetails.Released;
+    movieBoxOffice.innerText = movieDetails.BoxOffice;
   }
 
   searchBtn.addEventListener("click", () => {

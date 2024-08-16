@@ -4,7 +4,7 @@ const router = express.Router();
 /* GET Home Page */
 router.get("/", async (req, res, next) => {
   // const apiKey = "b99f2eca";
-  const apiUrl = `http://www.omdbapi.com/?t=Vikram&apikey=b99f2eca`;
+  const apiUrl = `http://www.omdbapi.com/?t=vikram&apikey=b99f2eca`;
 
   try {
     const response = await fetch(apiUrl);
