@@ -18,6 +18,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const seasonsContainer = document.querySelector(".seasons-container");
   const movieAwards = document.querySelector(".movie-awards");
 
+  cinemaHolder.addEventListener("input", async (event) => {
+    if (event.target.value.length >= 2) {
+      const value = event.target.value;
+      alert(value);
+
+      const apiUrl = `http://www.omdbapi.com/?s=${value}&apikey=b99f2eca`;
+
+      try {
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+          console.log("Response wast not ok");
+        }
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log("Error getting movie details", error);
+      }
+    }
+  });
+
   function makeUppercase() {
     const movieTypeElement = document.querySelector(".movie-type");
     const movieType = movieTypeElement.innerText;
