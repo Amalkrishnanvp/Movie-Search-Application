@@ -71,15 +71,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function episodeShower(movieDetails) {
     if (movieDetails.Type === "movie") {
-      if (!seasonsContainer.classList.contains("hidden")) {
-        seasonsContainer.classList.add("hidden");
+      if (seasonsContainer) {
+        if (!seasonsContainer.classList.contains("hidden")) {
+          seasonsContainer.classList.add("hidden");
+        }
       }
     } else {
-      if (seasonsContainer.classList.contains("hidden")) {
-        seasonsContainer.classList.remove("hidden");
-        seriesTotalSeasons.innerText = movieDetails.totalSeasons;
-      } else {
-        seriesTotalSeasons.innerText = movieDetails.totalSeasons;
+      if (seasonsContainer) {
+        if (seasonsContainer.classList.contains("hidden")) {
+          seasonsContainer.classList.remove("hidden");
+          seriesTotalSeasons.innerText = movieDetails.totalSeasons;
+        } else {
+          seriesTotalSeasons.innerText = movieDetails.totalSeasons;
+        }
       }
     }
   }
