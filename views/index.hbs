@@ -3,7 +3,7 @@
     <h1
       class="text-white font-semibold text-3xl sm:text-5xl md:text-5xl mb-14 text-center"
     >Movie Searcher</h1>
-    <div class="text-center mb-8 h-12">
+    <div class="text-center mb-8 h-12 relative">
       <input
         type="text"
         class="h-full outline-none px-2 py-1 rounded-md text-sm border border-white cinema-holder w-9/12 sm:w-10/12 bg-transparent text-white"
@@ -14,11 +14,16 @@
       >
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
+      <div class="h-20 bg-white absolute left-14 rounded-sm top-16 w-3/4 search-results-shower text-white hidden">
+        Search Results
+      </div>
     </div>
     <div
       class="text-white details-shower bg-gray-900 rounded-md px-6 pb-5 pt-7 md:pt-5 flex flex-col gap-3"
     >
-      <div class="row-1 flex flex-col items-center sm:flex-row gap-5 mb-5 md:mb-3">
+      <div
+        class="row-1 flex flex-col items-center sm:flex-row gap-5 mb-5 md:mb-3"
+      >
         <div class="w-48 mb-4">
           <img
             src="{{movie.Poster}}"
@@ -88,7 +93,7 @@
       <div class="row-10 flex flex-col gap-1">
         <h3>Awards : </h3>
         <p class="text-sm movie-awards">
-           {{#if movie.Awards}}
+          {{#if movie.Awards}}
             {{movie.Awards}}
           {{else}}
             N/A

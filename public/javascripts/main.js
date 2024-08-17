@@ -17,11 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const seriesTotalSeasons = document.querySelector(".series-total-seasons");
   const seasonsContainer = document.querySelector(".seasons-container");
   const movieAwards = document.querySelector(".movie-awards");
+  const searchResultsShower = document.querySelector(".search-results-shower");
 
   cinemaHolder.addEventListener("input", async (event) => {
-    if (event.target.value.length >= 2) {
+    const valueLength = event.target.value.length;
+    if (valueLength >= 2) {
       const value = event.target.value;
-      alert(value);
+
+      toggleSearchResultShower(valueLength);
 
       const apiUrl = `http://www.omdbapi.com/?s=${value}&apikey=b99f2eca`;
 
@@ -36,8 +39,22 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (error) {
         console.log("Error getting movie details", error);
       }
+
+      showSearchResults(value);
+    } else {
+      toggleSearchResultShower(valueLength);
     }
   });
+
+  function toggleSearchResultShower(valueLength) {
+    if (valueLength >= 2) {
+      searchResultsShower.classList.remove("hidden");
+    } else {
+      searchResultsShower.classList.add("hidden");
+    }
+  }
+
+  function showSearchResults(value) {}
 
   function makeUppercase() {
     const movieTypeElement = document.querySelector(".movie-type");

@@ -554,6 +554,22 @@ video {
   --tw-contain-style:  ;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.left-14 {
+  left: 3.5rem;
+}
+
+.top-16 {
+  top: 4rem;
+}
+
 .mb-14 {
   margin-bottom: 3.5rem;
 }
@@ -582,8 +598,16 @@ video {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-12 {
   height: 3rem;
+}
+
+.h-20 {
+  height: 5rem;
 }
 
 .h-auto {
@@ -592,6 +616,10 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.w-3\/4 {
+  width: 75%;
 }
 
 .w-4 {
@@ -683,6 +711,11 @@ video {
 
 .bg-transparent {
   background-color: transparent;
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-yellow-400 {
@@ -778,6 +811,10 @@ video {
 
 .hidden {
   display: none;
+}
+
+.search-results-shower {
+  background-color: #003566;
 }
 
 .hover\:bg-yellow-300:hover {
