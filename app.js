@@ -15,10 +15,12 @@ app.use(express.static("public"));
 // Import routes
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const searchRouter = require("./routes/search");
 
 // Use routes
 app.use("/", indexRouter);
 app.use("/searchmovie", usersRouter);
+app.use("/searchmovielist", searchRouter);
 
 // Start the server
 app.listen(port, () => {

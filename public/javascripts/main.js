@@ -18,43 +18,64 @@ document.addEventListener("DOMContentLoaded", () => {
   const seasonsContainer = document.querySelector(".seasons-container");
   const movieAwards = document.querySelector(".movie-awards");
   const searchResultsShower = document.querySelector(".search-results-shower");
+  const resultsTotal = document.querySelector(".results-total");
+  const searchList = document.querySelector(".search-list");
 
-  cinemaHolder.addEventListener("input", async (event) => {
+  let combinedHtml = "";
+
+  cinemaHolder.addEventListener("keyup", async (event) => {
     const valueLength = event.target.value.length;
-    if (valueLength >= 2) {
-      const value = event.target.value;
 
-      toggleSearchResultShower(valueLength);
+    if (/[a-zA-Z0-9]$/.test(event.key) || event.key === "Backspace") {
+      if (valueLength) {
+        const value = event.target.value;
 
-      const apiUrl = `http://www.omdbapi.com/?s=${value}&apikey=b99f2eca`;
-
-      try {
-        const response = await fetch(apiUrl);
-
-        if (!response.ok) {
-          console.log("Response wast not ok");
-        }
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.log("Error getting movie details", error);
+        searchMovieList(value);
       }
-
-      showSearchResults(value);
-    } else {
-      toggleSearchResultShower(valueLength);
     }
   });
 
-  function toggleSearchResultShower(valueLength) {
-    if (valueLength >= 2) {
-      searchResultsShower.classList.remove("hidden");
+  function hideSearchList() {
+    searchResultsShower.classList.add("hidden");
+  }
+
+  function showSearchList() {
+    searchResultsShower.classList.remove("hidden");
+  }
+
+  function toggleSearchResultShower(dataResponse) {
+    if (dataResponse === "True") {
+      showSearchList();
     } else {
-      searchResultsShower.classList.add("hidden");
+      hideSearchList();
     }
   }
 
-  function showSearchResults(value) {}
+  function showSearchResults(totalResults, searchValues, dataResponse) {
+    toggleSearchResultShower(dataResponse);
+    if (dataResponse === "True") {
+      resultsTotal.innerText = `"${totalResults}"`;
+      // console.log(searchValues);
+
+      if (combinedHtml != "") {
+        combinedHtml = "";
+      }
+
+      searchValues.forEach((item) => {
+        const searchContents = ` <div class="text-left flex gap-4 mb-4">
+      <div class="w-20"><img src="${item.Poster}" class="object-cover w-full h-auto rounded-sm"></div>
+      <div class="flex flex-col justify-center mb-5 gap-2">
+        <p>${item.Title}</p>
+        <p>${item.Year}</p>
+      </div>
+    </div>`;
+
+        combinedHtml += searchContents;
+      });
+
+      searchList.innerHTML = combinedHtml;
+    }
+  }
 
   function makeUppercase() {
     const movieTypeElement = document.querySelector(".movie-type");
@@ -65,6 +86,39 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   makeUppercase();
+
+  async function searchMovieList(search) {
+    // alert(movieName); checkpoint 2
+    try {
+      const response = await fetch("/searchmovielist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ movie: search }),
+      });
+
+      if (!response.ok) {
+        throw new error("Response was not ok");
+      }
+      const data = await response.json();
+      const movieDetails = data.movieDetails;
+      const searchValues = movieDetails.Search;
+      const dataResponse = movieDetails.Response;
+      const totalResults = movieDetails.totalResults;
+      console.log(movieDetails);
+      if (searchValues) {
+        console.log(searchValues);
+      }
+      console.log(dataResponse);
+      if (totalResults) {
+        console.log(totalResults);
+      }
+      showSearchResults(totalResults, searchValues, dataResponse);
+    } catch (error) {
+      console.error("Error getting movie details", error);
+    }
+  }
 
   async function searchMovie(movieName) {
     try {
@@ -128,8 +182,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   searchBtn.addEventListener("click", () => {
     if (cinemaHolder.value) {
-      const movieName = cinemaHolder.value;
-      searchMovie(movieName);
+      if (/^[a-zA-Z0-9]*$/.test(cinemaHolder.value)) {
+        const movieName = cinemaHolder.value;
+        searchMovie(movieName);
+      } else {
+        alert("Please enter a valide movie name!");
+      }
     } else {
       alert("Please enter a movie name before searching!");
     }
@@ -138,8 +196,12 @@ document.addEventListener("DOMContentLoaded", () => {
   cinemaHolder.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       if (cinemaHolder.value) {
-        const movieName = cinemaHolder.value;
-        searchMovie(movieName);
+        if (/^[a-zA-Z0-9]*$/.test(cinemaHolder.value)) {
+          const movieName = cinemaHolder.value;
+          searchMovie(movieName);
+        } else {
+          alert("Please enter a valid movie name!");
+        }
       } else {
         alert("Please enter a movie name before searching!");
       }

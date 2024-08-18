@@ -14,8 +14,17 @@
       >
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
-      <div class="h-20 bg-white absolute left-14 rounded-sm top-16 w-3/4 search-results-shower text-white hidden">
-        Search Results
+      <div class="h-52 bg-white absolute left-14 rounded-md top-16 w-3/4 search-results-shower text-white hidden overflow-auto px-3 py-2">
+        <p class="text-left mb-4">Total Results: <span class="results-total"></span></p>
+        <ul class="search-list">
+          {{!-- <div class="text-left flex gap-4">
+            <div class="w-20"><img src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg" class="object-cover w-full h-auto rounded-sm"></div>
+            <div class="flex flex-col mb-5">
+              <p>Movie name</p>
+              <p>year</p>
+            </div>
+          </div> --}}
+        </ul>
       </div>
     </div>
     <div
