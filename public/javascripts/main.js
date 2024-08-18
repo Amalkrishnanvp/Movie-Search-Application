@@ -20,8 +20,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchResultsShower = document.querySelector(".search-results-shower");
   const resultsTotal = document.querySelector(".results-total");
   const searchList = document.querySelector(".search-list");
-
+  const holder = document.querySelector(".holder");
+  let searchListToggle = false;
   let combinedHtml = "";
+
+  holder.addEventListener("click", () => {
+    if (searchListToggle) {
+      hideSearchList();
+    }
+  });
+
+  searchList.addEventListener("click", (event) => {
+    const liElement = event.target.closest("li");
+    if (liElement) {
+      const movieName = liElement.querySelector("p:first-child").textContent;
+      console.log(movieName);
+      cinemaHolder.value = movieName;
+      searchMovie(movieName);
+      hideSearchList();
+    }
+  });
 
   cinemaHolder.addEventListener("keyup", async (event) => {
     const valueLength = event.target.value.length;
@@ -37,10 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function hideSearchList() {
     searchResultsShower.classList.add("hidden");
+    searchListToggle = false;
   }
 
   function showSearchList() {
     searchResultsShower.classList.remove("hidden");
+    searchListToggle = true;
   }
 
   function toggleSearchResultShower(dataResponse) {
@@ -62,13 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       searchValues.forEach((item) => {
-        const searchContents = ` <div class="text-left flex gap-4 mb-4">
+        const searchContents = ` <li class="text-left flex gap-4 mb-4">
       <div class="w-20"><img src="${item.Poster}" class="object-cover w-full h-auto rounded-sm"></div>
       <div class="flex flex-col justify-center mb-5 gap-2">
         <p>${item.Title}</p>
         <p>${item.Year}</p>
       </div>
-    </div>`;
+    </li>`;
 
         combinedHtml += searchContents;
       });
