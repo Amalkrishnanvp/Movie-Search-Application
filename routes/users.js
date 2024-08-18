@@ -3,11 +3,11 @@ const router = express.Router();
 
 /* POST movie search */
 router.post("/", async (req, res, next) => {
-  const movieName = req.body.movie;
-  console.log(movieName);
+  const cinemaName = req.body.movie;
+  console.log(cinemaName);
 
   // const apiKey = "b99f2eca";
-  const apiUrl = `http://www.omdbapi.com/?t=${movieName}&apikey=b99f2eca`;
+  const apiUrl = `http://www.omdbapi.com/?t=${cinemaName}&apikey=b99f2eca`;
 
   try {
     const response = await fetch(apiUrl);

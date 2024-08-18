@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let combinedHtml = "";
 
   holder.addEventListener("click", () => {
-    if (searchListToggle) {
+    if (searchListToggle === true) {
       hideSearchList();
     }
   });
@@ -33,32 +33,22 @@ document.addEventListener("DOMContentLoaded", () => {
   searchList.addEventListener("click", (event) => {
     const liElement = event.target.closest("li");
     if (liElement) {
-      const movieName = liElement.querySelector("p:first-child").textContent;
-      console.log(movieName);
-      cinemaHolder.value = movieName;
-      searchMovie(movieName);
+      const cinemaName = liElement.querySelector("p:first-child").textContent;
+      console.log(cinemaName);
+      cinemaHolder.value = cinemaName;
+      searchMovie(cinemaName);
       hideSearchList();
-    }
-  });
-
-  cinemaHolder.addEventListener("keyup", async (event) => {
-    const valueLength = event.target.value.length;
-
-    if (/[a-zA-Z0-9]$/.test(event.key) || event.key === "Backspace") {
-      if (valueLength) {
-        const value = event.target.value;
-
-        searchMovieList(value);
-      }
     }
   });
 
   function hideSearchList() {
     searchResultsShower.classList.add("hidden");
+    console.log("I am triggered");
     searchListToggle = false;
   }
 
   function showSearchList() {
+    console.log("i am shown");
     searchResultsShower.classList.remove("hidden");
     searchListToggle = true;
   }
@@ -72,18 +62,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showSearchResults(totalResults, searchValues, dataResponse) {
-    toggleSearchResultShower(dataResponse);
     if (dataResponse === "True") {
       resultsTotal.innerText = `"${totalResults}"`;
       // console.log(searchValues);
 
-      if (combinedHtml != "") {
-        combinedHtml = "";
-      }
+      combinedHtml = "";
 
       searchValues.forEach((item) => {
         const searchContents = ` <li class="text-left flex gap-4 mb-4">
-      <div class="w-20"><img src="${item.Poster}" class="object-cover w-full h-auto rounded-sm"></div>
+      <div class="w-20"><img src="${item.Poster}" alt="Image Not Available" class="object-cover w-full h-auto rounded-sm"></div>
       <div class="flex flex-col justify-center mb-5 gap-2">
         <p>${item.Title}</p>
         <p>${item.Year}</p>
@@ -134,24 +121,27 @@ document.addEventListener("DOMContentLoaded", () => {
       if (totalResults) {
         console.log(totalResults);
       }
+
+      toggleSearchResultShower(dataResponse);
+
       showSearchResults(totalResults, searchValues, dataResponse);
     } catch (error) {
       console.error("Error getting movie details", error);
     }
   }
 
-  async function searchMovie(movieName) {
+  async function searchMovie(cinemaName) {
     try {
       const response = await fetch("/searchmovie", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ movie: movieName }),
+        body: JSON.stringify({ movie: cinemaName }),
       });
 
       if (!response.ok) {
-        throw new error("Response was not ok");
+        throw new Error("Response was not ok");
       }
       const data = await response.json();
       showMovieDetails(data);
@@ -202,9 +192,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   searchBtn.addEventListener("click", () => {
     if (cinemaHolder.value) {
-      if (/^[a-zA-Z0-9]*$/.test(cinemaHolder.value)) {
-        const movieName = cinemaHolder.value;
-        searchMovie(movieName);
+      if (/^[a-zA-Z0-9\s\-\']*$/.test(cinemaHolder.value)) {
+        const cinemaName = cinemaHolder.value;
+        searchMovie(cinemaName);
       } else {
         alert("Please enter a valide movie name!");
       }
@@ -214,16 +204,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   cinemaHolder.addEventListener("keydown", (event) => {
+    const valueLength = event.target.value.length;
+
     if (event.key === "Enter") {
+      if (searchListToggle === true) {
+        hideSearchList();
+      }
       if (cinemaHolder.value) {
-        if (/^[a-zA-Z0-9]*$/.test(cinemaHolder.value)) {
-          const movieName = cinemaHolder.value;
-          searchMovie(movieName);
+        if (/^[a-zA-Z0-9\s\-\']*$/.test(cinemaHolder.value)) {
+          const cinemaName = cinemaHolder.value;
+          searchMovie(cinemaName);
         } else {
           alert("Please enter a valid movie name!");
         }
       } else {
         alert("Please enter a movie name before searching!");
+      }
+    } else if (/[a-zA-Z0-9]$/.test(event.key) || event.key === "Backspace") {
+      if (valueLength) {
+        const value = event.target.value;
+
+        searchMovieList(value);
       }
     }
   });
