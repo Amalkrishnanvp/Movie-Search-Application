@@ -16,6 +16,12 @@ A simple movie search application built using Node.js, Express, Handlebars (hbs)
 
 ## Installation
 
+### Essentials
+
+- [Node.js](https://nodejs.org/) for the JavaScript runtime environment.
+- [Git](https://git-scm.com/) for version control.
+- [Visual Studio Code](https://code.visualstudio.com/) for text editing. (Recommended)
+
 1. **Clone the repository**
 
    ```bash
