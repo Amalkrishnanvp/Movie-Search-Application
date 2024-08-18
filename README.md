@@ -38,7 +38,7 @@ A simple movie search application built using Node.js, Express, Handlebars (hbs)
    Create a .env file in the root directory and add your OMDb API key:
 
    ```env
-   API_KEY=your_omdb_api_key
+   API_KEY = your_omdb_api_key
    ```
 
 5. **Run the project**
