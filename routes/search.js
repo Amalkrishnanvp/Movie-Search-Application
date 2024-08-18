@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+require("dotenv").config();
+
+const apiKey = process.env.API_KEY;
 
 /* POST movie search */
 router.post("/", async (req, res, next) => {
@@ -7,7 +10,7 @@ router.post("/", async (req, res, next) => {
   console.log("poda patti");
 
   // const apiKey = "b99f2eca";
-  const apiUrl = `http://www.omdbapi.com/?s=${movieName}&apikey=b99f2eca`;
+  const apiUrl = `http://www.omdbapi.com/?s=${movieName}&apikey=${apiKey}`;
 
   try {
     const response = await fetch(apiUrl);
