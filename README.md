@@ -10,8 +10,8 @@ A simple movie search application built using Node.js, Express, Handlebars (hbs)
 
 ## Technologies Used
 
-- **Frontend**: Handlebars (hbs), Tailwind CSS
-- **Backend**: Node.js, Express
+- **Frontend**: HTML, CSS with Tailwind CSS, JavaScript
+- **Backend**: Node.js, Express, Handlebars (hbs)
 - **API**: OMDb API (for fetching movie data)
 
 ## Installation
